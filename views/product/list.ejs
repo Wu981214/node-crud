@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>- 商品列表</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="/hadmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet" />
+    <link href="/hadmin/css/font-awesome.css?v=4.4.0" rel="stylesheet" />
+    <link href="/hadmin/css/animate.css" rel="stylesheet" />
+    <link href="/hadmin/css/style.css?v=4.1.0" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-primary" href="/product/add">新增</a>
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>商品图片</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% list.forEach((item,index)=>{%>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td>
+                  <img src="<%= item.img %>" style="width: 100px;" />
+                </td>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+                <td>   
+                    <a class="btn btn-danger product_btn" href="javascript:;" role="button"  name="<%= item.id %>">删除</a>
+                    <a class="btn btn-info" href="/product/edit/<%= item.id %>" role="button" >修改</a>   
+                </td>
+              </tr>
+              <%}) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="/hadmin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/hadmin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script>
+     $(function(){
+        $(".product_btn").each(function(){
+          $(this).click(()=>{
+            let id = $(this).attr("name");
+            $.post('./del',{id},res=>{
+              if(res.code==1){
+                location.reload();
+              }
+            });
+        });
+        });
+       
+      });
+    </script>
+  </body>
+</html>

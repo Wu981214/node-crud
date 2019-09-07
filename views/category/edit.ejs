@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link href="/hadmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet" />
+<body>
+    
+    <div class="container">
+        
+        <form action="/category/upload/<%= item.id %>" method="POST" role="form">
+            <legend>添加分类</legend>
+        
+            <div class="form-group">
+                <label for="">分类名称</label>
+                <input type="text" class="form-control" id="" placeholder="请输入分类名称" name="classify" value="<%= item.classify %>">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+        
+    </div>
+    <script src="/hadmin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/hadmin/js/bootstrap.min.js?v=3.3.6"></script>
+
+   
+</body>
+</html>

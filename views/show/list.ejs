@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+*{margin: 0;padding: 0;}
+.product{
+    width: 960px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #ccc;
+}
+dl{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 200px;
+    float: left;
+   
+}
+dt{
+    width: 170px;
+    height: 200px;
+    float: left;
+  
+}
+dt img{
+    width: 170px;
+    height: 200px;
+}
+dd{
+    width: 130px;
+    height: 200px;
+    float: left;
+  
+}
+h3{
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+p{
+    font-size: 14px;
+    margin-left: 30px;
+}
+</style>
+<body>
+    <div class="product">
+        <% list.forEach((item)=>{%>
+            <dl>
+                    <dt><img src="<%= item.img %>" alt=""></dt>
+                    <dd>
+                        <h3><%= item.name %></h3>
+                        <p>￥<%= item.price %></p>
+                    </dd>
+                </dl>
+        <%}) %>
+    </div>
+</body>
+</html>

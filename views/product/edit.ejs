@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link href="/hadmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet" />
+<body>
+    
+    <div class="container">
+        
+        <form action="/product/upload/<%= item.id %>" method="POST" role="form">
+            <legend>修改书籍</legend>
+        
+            <div class="form-group">
+                <label for="">商品名称</label>
+                <input type="text" class="form-control" id="" placeholder="请输入商品名称" name="name" value="<%= item.name %>">
+            </div>
+            <div class="form-group">
+                <label for="">商品分类</label>
+                 <select name="_category" id="input" class="form-control" required="required">
+                        <option value="<%= item._category.id %>"><%= item._category.classify %></option>
+                        <% list.forEach((every,index)=>{%>
+                            <option value="<%= every.id %>"><%= every.classify %></option>
+                        <%}) %>
+                 </select>
+            </div>
+            <div class="form-group">
+                <label for="">商品图片</label>
+                <input type="file" class="form-control" id="fileSel" style="display: none">
+                <img src="<%= item.img %>" alt="" style="width: 50px; height: 50px" id ="img">
+                <input type="hidden" id="fileImg" name="img" value="<%= item.img %>">
+            </div>
+            <div class="form-group">
+                <label for="">商品价格</label>
+                <input type="text" class="form-control" id="" placeholder="请输入商品价格" name="price" value="<%= item.price %>">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+        
+    </div>
+    <script src="/hadmin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/hadmin/js/bootstrap.min.js?v=3.3.6"></script>
+    <link rel="stylesheet" href="/kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="/kindeditor/plugins/code/prettify.css" />
+    <script charset="utf-8" src="/kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="/kindeditor/lang/zh-CN.js"></script>
+    <script charset="utf-8" src="/kindeditor/plugins/code/prettify.js"></script>
+    <script>
+    $(function(){
+        $("#img").click(function(){
+            $('#fileSel').click();
+        });
+
+        $("#fileSel").change(function(event){
+            var file = event.currentTarget.files[0];
+            //console.log(file);
+
+            var formDate = new FormData();
+            formDate.append('file',file);
+
+            $.ajax({
+                url:'/file_upload',
+                data:formDate,
+                type:'post',
+                processData: false, // 不序列化传递的数据
+                contentType: false, // 设置contentType为false
+                cache: false,
+                success:function(response){
+                    $("#img").attr('src',response.info);
+                    $('#fileImg').val(response.info);
+                }
+            });
+        })
+    });
+    </script>
+</body>
+</html>

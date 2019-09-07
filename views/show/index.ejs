@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{margin: 0;padding: 0}
+    li{
+        list-style: none
+    }
+    .nav{
+        height: 40px;
+        margin: 100px auto;
+        width: 700px;
+        background-color:deeppink; 
+    }
+    ul{
+        width: 700px;
+        height: 40px;
+    }   
+    li{
+        float: left;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-right: 1px solid #ccc;
+    }
+    a{
+        color: #fff;
+        font-weight: 500px;
+        text-decoration: none
+    }
+</style>
+<body>
+    <div class="nav">
+        <ul>
+                <% list.forEach((item)=>{%>
+                    <li><a href="/show/list/<%= item.id %>"><%= item.classify %></a></li>
+                <%}) %>
+        </ul>
+    </div>
+</body>
+</html>

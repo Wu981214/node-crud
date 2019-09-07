@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>- 登录</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="/hadmin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/hadmin/css/font-awesome.css?v=4.4.0" rel="stylesheet" />
+    <link href="/hadmin/css/animate.css" rel="stylesheet" />
+    <link href="/hadmin/css/style.css" rel="stylesheet" />
+    <link href="/hadmin/css/login.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+      <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>
+      if (window.top !== window.self) {
+        window.top.location = window.location;
+      }
+    </script>
+  </head>
+
+  <body class="signin">
+    <div class="signinpanel">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="no-margins">MiNiShop</h4>
+          <input
+            type="text"
+            class="form-control uname"
+            id="txtUserName"
+            placeholder="用户名"
+          />
+          <input
+            type="password"
+            class="form-control pword m-b"
+            id="txtPWD"
+            placeholder="密码"
+          />
+          <button class="btn btn-success btn-block" id="btnLogin">登录</button>
+        </div>
+      </div>
+      <div class="signup-footer">
+        <div class="pull-left">
+          &copy; MiNiShop
+        </div>
+      </div>
+    </div>
+    <script src="/hadmin/js/jquery.min.js?v=2.1.4"></script>
+    <script>
+      $(function(){
+        $("#btnLogin").click(function(){
+          let username = $('#txtUserName').val();
+          let psw = $('#txtPWD').val();
+         if(username&&psw){
+          $.post('/login',{username,psw},function(data){
+            console.log(data);
+              if(data.code==1){
+                window.location.href='/';
+              }else if(data.code==0){
+                  alert(data.message);
+              }
+          });
+         }else{
+           alert("请输入用户名和密码");
+         }
+        });
+      });
+    
+    </script>
+  </body>
+</html>
